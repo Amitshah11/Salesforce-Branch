@@ -1,0 +1,43 @@
+<template>
+
+
+    <lightning-card title="Simple Calculator">
+        <div>
+            <lightning-input type="number" name="input1" label="Number 1" placeholder="type here..."
+                onchange={num1handler}></lightning-input>
+            <lightning-input type="number" name="input2" label="Number 2" placeholder="type here..."
+                onchange={num2handler}></lightning-input>
+        </div>
+
+        <br />
+        <div>
+            <lightning-button-group>
+                <lightning-button variant="brand" label="Add" onclick={handleAdd} class="slds-m-left_x-small">
+                </lightning-button>
+                <lightning-button variant="brand" label="Sub" onclick={handleSub} class="slds-m-left_x-small">
+                </lightning-button>
+                <lightning-button variant="brand" label="Mul" onclick={handleMul} class="slds-m-left_x-small">
+                </lightning-button>
+                <lightning-button variant="brand" label="Div" onclick={handleDiv} class="slds-m-left_x-small">
+                </lightning-button>
+            </lightning-button-group>
+            <h1>First number : {bothNum.input1}</h1>
+            <h1>Second number : {bothNum.input2}</h1>
+        </div>
+
+        <div>
+            Result is :{result}
+        </div>
+
+        <lightning-datatable key-field="Id" data={data} columns={columns} show-row-number-column suppress-bottom-bar
+            draft-values={draftValues} onsave={handleSave}>
+        </lightning-datatable>
+
+        <h1>Result is : {number}</h1>
+
+    </lightning-card>
+
+    <c-child-of-calculator output={result}></c-child-of-calculator>
+
+    <c-child-of-calculator onadd={Add1} onsub={Subtract1}></c-child-of-calculator>
+</template>

@@ -1,0 +1,32 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller='Aura2Class'>
+    
+    <aura:attribute name="AccList" type="Account"/>
+    <aura:attribute name="ConList" type="Contact"/>
+        <aura:attribute name="OppList" type="Opportunity"/>
+
+    
+    <aura:attribute name="AcId" type="string"/>
+    
+    <aura:handler name="init" value="{!this}" action="{!c.AccountHandle}"/>    
+    
+    <lightning:Select name="select1" label="Account" value="{!v.AcId}" onchange="{!c.ChangeHandle}" >
+                <option value="">choose Account...</option>
+        <aura:iteration items="{!v.AccList}" var="row">            
+            <option value="{!row.Id}">{!row.Name}</option>
+        </aura:iteration>
+    </lightning:Select>
+    
+
+    <lightning:Select name="select2" label="Contact">
+        <aura:iteration items="{!v.ConList}" var="row1">            
+            <option value="{!row1.Id}">{!row1.LastName}</option>
+        </aura:iteration>
+    </lightning:Select>
+    
+        <lightning:Select name="select3" label="Opportunity" >
+        <aura:iteration items="{!v.OppList}" var="row2">            
+            <option value="{!row2.Id}">{!row2.Name}</option>
+        </aura:iteration>
+    </lightning:Select>
+    
+</aura:component>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Club__c</fullName>
+    <externalId>false</externalId>
+    <label>Club</label>
+    <referenceTo>Club__c</referenceTo>
+    <relationshipLabel>Clubs Allocation</relationshipLabel>
+    <relationshipName>Clubs_Allocation</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

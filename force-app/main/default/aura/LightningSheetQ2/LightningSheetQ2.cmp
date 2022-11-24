@@ -1,0 +1,25 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" controller="LightContactClass">
+    <aura:attribute name="createcon" type="Contact" default="{'sObjectType' : 'Contact',
+                                                             'LastName':'', 
+                                                             'Phone':'' ,
+                                                             'AccountId':''}"/>
+    
+    <aura:attribute name="AcList" type="List"/>
+        <aura:attribute name="Id" type="String"/>
+
+    
+    <aura:handler name="init" value="{!this}" action="{!c.Conlist}"/>
+    <div class="slds-p-around_small">
+        <lightning:input type="Text" label="Last Name" value="{!v.createcon.LastName}"/>
+        <lightning:input type="Phone" label="Phone Number" value="{!v.createcon.Phone}"/>
+
+        
+        <lightning:Combobox name="select Account" placeholder=" Select an Account..." label="account" value="{!v.createcon.AccountId}" options="{!v.AcList}"/>
+
+        <h1>Id is :{!v.Id}</h1>        
+        <lightning:button label="Create Contact" variant="brand" onclick="{!c.doSave}"/>
+                <lightning:button label="Clear" variant="brand" onclick="{!c.Clear}"/>
+
+    </div>
+ 
+</aura:component>

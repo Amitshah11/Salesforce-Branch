@@ -1,0 +1,29 @@
+<aura:component>
+    
+    
+    <aura:attribute name="input1" type="integer"/>
+    <aura:attribute name="input2" type="integer"/>
+    <aura:attribute name="result" type="integer"/>
+    
+    <lightning:input  type="number" value="{!v.input1}" label="Enter first no. :"/>
+    <lightning:input  type="number" value="{!v.input2}" label="Enter second no. :"/>
+    <lightning:card>
+        <div class="slds-grid slds-gutters" style="font-size: 20px">
+            <div class="slds-col slds-align_absolute-center slds-border_left " >    
+                <lightning:button  label="sub" class="slds-button_brand " onclick="{!c.resultsub}"/>
+            </div>
+            <div class="slds-col slds-align_absolute-center slds-border_left">    
+                <lightning:button  label="add" class="slds-button_brand "  onclick="{!c.resultadd}"/>
+            </div>
+            <div class="slds-col slds-align_absolute-center slds-border_left">    
+                <lightning:button  label="mul" class="slds-button_brand "  onclick="{!c.resultmul}"/>
+            </div>
+            <div class="slds-col slds-align_absolute-center" >    
+                <lightning:button  label="div" class="slds-button_brand " onclick="{!c.resultdiv}"/>
+            </div>
+            
+        </div>
+        <h1 class="slds-align_absolute-center" style="font-size: 20px">Result is : {!v.result}</h1>
+        
+    </lightning:card>    
+</aura:component>

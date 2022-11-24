@@ -1,0 +1,27 @@
+<aura:component implements="flexipage:availableForAllPageTypes" access="global" 
+                								controller="LightningSheetClass">
+    <aura:attribute name="createAcc" type="Account" default="{'Sobject':'Account'}"/>
+        <aura:attribute name="Id" type="string" />
+    
+    
+    <div class="slds-p-around_small">
+        
+        <lightning:input type="Text" label="Name" value="{!v.createAcc.Name}"/>
+        <lightning:input type="Text" label="Account Number" value="{!v.createAcc.AccountNumber}"/>
+        <lightning:input type="Email" name="email2" value="{!v.createAcc.Email}" label="Email ID"/>
+        <lightning:input type="Phone" label="Phone Number" value="{!v.createAcc.Phone}"/>
+        <lightning:input type="Website" label="Website" value="{!v.createAcc.Website}"/>
+        <h1>Id is ={!v.Id}</h1>
+        
+        
+        <lightning:button label="Create Account" variant="brand" onclick="{!c.doSave}"/>
+        <lightning:button label="Clear" variant="brand" onclick="{!c.Clear}"/>
+    </div>
+</aura:component>
+
+
+<!--	<lightning:select name="select1" label="account" value="{!v.conObj.AccountId}">
+    	<aura:iteration items="{!v.acclookup}" var="a">
+            <option value="{!a.id}">{!a.Name}</option>
+        </aura:iteration>
+    </lightning:select>   -->

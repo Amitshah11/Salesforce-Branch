@@ -1,0 +1,27 @@
+<template>
+    
+<lightning-card title="Stripe Account" variant="narrow" icon-name="standard:account">
+    <template if:true={stripefound}>
+
+    <div class="slds-align_absolute-center"><h1>
+        Account Id : {recordId}
+        </h1></div> 
+
+<div class="slds-align_absolute-center"><h1>
+Stripe Customer Id : {stripeid}
+</h1></div>
+
+<div class="slds-align_absolute-center"><h1>
+    Stripe Customer Name : {stripename}
+</h1></div>
+
+</template>
+<template if:false={stripefound}>
+<div class="slds-align_absolute-center">
+    No stripe account created. Create a new stripe account now.
+    <lightning-button label="Create" onclick={createstrip} variant="Brand"></lightning-button>
+</div>
+</template>
+</lightning-card>
+
+</template>

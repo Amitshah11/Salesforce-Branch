@@ -1,0 +1,202 @@
+<template>
+    <div class="slds-table--header-fixed_container" style="height:450px;">
+        <div class="slds-scrollable_y" style="height:100%;">
+            <table class="slds-table slds-table_bordered slds-table_col-bordered slds-table--header-fixed"
+                style="text-align: center">
+                <thead>
+                    <tr>
+                        <th class="slds-align_absolute-center">
+                            <div class="slds-cell-fixed slds-align_absolute-center" title="Name">Name</div>
+                        </th>
+                        <th>
+                            <div class="slds-cell-fixed slds-align_absolute-center" style="margin-left: 90px;"
+                                title="Account Name">Account Name</div>
+
+                        </th>
+                        <th class="slds-align_absolute-center">
+                            <div class=" slds-cell-fixed slds-align_absolute-center" title="Close Date">Close Date</div>
+
+                        </th>
+                        <th>
+                            <div class="slds-grid slds-wrap slds-cell-fixed  slds-align_absolute-center"
+                                style=" margin-left: 25px; ">
+                                <div class="slds-size_2-of-3 slds-wrap"> Stage name </div>
+                                <div class="slds-size_1-of-3">
+                                    <lightning-button-icon class="slds-float_right slds-m-left_small"
+                                        icon-name="utility:chevrondown" alternative-text="drop" onclick={dropClick}>
+                                    </lightning-button-icon>
+                                </div>
+                            </div>
+                        </th>
+
+                        <th class=" slds-align_absolute-center">
+                            <div class="slds-cell-fixed slds-align_absolute-center" title="Amount">Amount</div>
+                        </th>
+                        <th class=" slds-align_absolute-center">
+
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <template for:each={alldata} for:item="item" for:index="index">
+
+                        <tr key={item} aria-selected="false" class="slds-hint-parent">
+
+                            <td scope="row" tabindex="0">
+                                <div class="slds-truncate " title={item.Name}>{item.Name}</div>
+                            </td>
+                            <td scope="row">
+                                <div class="slds-truncate" title={item.Account.Name}>{item.Account.Name}</div>
+                            </td>
+                            <td scope="row">
+                                <div class="slds-truncate" title={item.closedate}>{item.CloseDate}</div>
+                            </td>
+                            <td scope="row">
+                                <div class="slds-truncate" title={item.stagename}>{item.StageName}</div>
+                            </td>
+
+                            <td scope="row">
+                                <div class="slds-truncate" title={item.amount}>{item.Amount}</div>
+                            </td>
+                            <td scope="row">
+                                <div class="lgc-bg">
+                                    <lightning-button-menu alternative-text="Show menu" value={item.StageName}
+                                        name={item.Id} menu-alignment="auto" onselect={ChangeMenuIcon}>
+                                        <lightning-menu-item value="Edit" label="Edit"></lightning-menu-item>
+                                        <lightning-menu-item value="Delete" label="Delete"></lightning-menu-item>
+                                        <lightning-menu-item value="View" label="View"></lightning-menu-item>
+                                        <lightning-menu-item value="Change stage" label="Change stage">
+                                        </lightning-menu-item>
+
+                                    </lightning-button-menu>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+
+    <template if:true={dropclick}>
+
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container" style=" width: 191px ; padding-top: 130px; height: 550px;">
+
+                <div class="slds-modal__content slds-p-around_medium" style="width: 200px; border: 2px solid black">
+                    <lightning-input type="checkbox" label="All stages" name="All stages" onchange={checkboxchange}>
+                    </lightning-input>
+
+                    <template if:true={allselect}>
+                        <template for:each={options} for:item="opt">
+                            <lightning-input key={opt} type="checkbox" label={opt} name={opt} onchange={checkboxchange}
+                                checked></lightning-input>
+                        </template>
+                    </template>
+
+                    <template if:false={allselect}>
+                        <template for:each={options} for:item="opt">
+                            <lightning-input class="selectit" key={opt} type="checkbox" label={opt} name={opt}
+                                onchange={checkboxchange}></lightning-input>
+                        </template>
+                    </template>
+
+                </div>
+
+                <footer class="slds-modal__footer" style="width: 200px; border: 2px solid black">
+                    <lightning-button label="Cancel" class="slds-m-around_xx-small" onclick={Cancel} title="Cancel">
+                    </lightning-button>
+                    <lightning-button label="Ok" class="slds-m-around_xx-small" variant="brand" onclick={Submit}
+                        title="OK"></lightning-button>
+                </footer>
+
+            </div>
+
+        </section>
+
+    </template>
+    <template if:false={dropclick}></template>
+
+    <template if:true={editrow}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container" style=" width: 600px ; height: 600px; padding-top: 100px; ">
+
+                <div class="slds-modal__content slds-p-around_medium"
+                    style="width: 600px; height: 600px; border: 2px solid black">
+
+                    <lightning-record-form record-id={recordId} object-api-name="Opportunity" layout-type="Full"
+                        columns="2" mode="edit" oncancel={oncancel} onsubmit={onsave}>
+
+                    </lightning-record-form>
+                </div>
+
+            </div>
+
+        </section>
+    </template>
+    <template if:true={editrow}></template>
+
+    <template if:true={isLoaded}>
+        <lightning-spinner alternative-text="Loading..." variant="brand">
+        </lightning-spinner>
+    </template>
+    <template if:false={isLoaded}>
+    </template>
+
+
+    <template if:true={viewrecord}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container" style=" width: 600px ; height: 600px; padding-top: 100px; ">
+
+                <div class="slds-modal__content slds-p-around_medium"
+                    style="width: 600px; height: 600px; border: 2px solid black">
+
+                    <lightning-record-form record-id={recordId} object-api-name="Opportunity" layout-type="Full"
+                        columns="2" mode="readonly">
+
+                    </lightning-record-form>
+                </div>
+                <footer class="slds-modal__footer" style="width: 600px; border: 2px solid black">
+                    <lightning-button label="Cancel" class="slds-m-around_xx-small" onclick={oncancel} title="Cancel">
+                    </lightning-button>
+                </footer>
+            </div>
+
+        </section>
+    </template>
+    <template if:false={viewrecord}></template>
+
+    <template if:true={changestage}>
+        <section role="dialog" tabindex="-1" class="slds-modal slds-fade-in-open">
+
+            <div class="slds-modal__container" style=" width: 300px ; height: 600px; padding-top: 100px; ">
+
+                <div class="slds-modal__content slds-p-around_medium"
+                    style="width: 300px; height: 600px; border: 2px solid black">
+
+                    <lightning-combobox options={stageOptions} label="Select stage name" placeholder="Choose stage name"
+                        value={previousstage} onchange={newStagechange}>
+
+                    </lightning-combobox>
+
+                </div>
+                <footer class="slds-modal__footer" style="width: 300px; border: 2px solid black">
+                    <lightning-button label="Cancel" class="slds-m-around_xx-small" onclick={oncancel} title="Cancel">
+                    </lightning-button>
+                    <lightning-button label="Ok" class="slds-m-around_xx-small" onclick={onok} title="Ok">
+                    </lightning-button>
+
+                </footer>
+            </div>
+
+        </section>
+    </template>
+    <template if:false={changestage}></template>
+</template>

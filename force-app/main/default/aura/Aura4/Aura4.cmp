@@ -1,0 +1,26 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="Aura4Class">
+    
+    
+    <aura:attribute name="ApiList" type="List"/>
+    <aura:attribute name="AllName" type="List"/>
+    
+    <aura:attribute name="ApiN" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.objlist}"/>
+    
+    <lightning:card>
+        <div>
+            <lightning:Select name="select1" label="Objects" class="slds-m-left_x-small" value="{!v.ApiN}" onchange="{!c.NamesList}">
+                <aura:iteration items="{!v.ApiList}" var="row">
+                    <option value="{!row.QualifiedApiName}">{!row.QualifiedApiName}</option>
+                </aura:iteration>
+            </lightning:Select>
+            
+            <lightning:Select name="select2" label="Names" class="slds-m-left_x-small">
+                <aura:iteration items="{!v.AllName}" var="row1">
+                    <option value="">{!row1}</option>
+                </aura:iteration>
+            </lightning:Select>
+        </div>
+    </lightning:card>
+    
+</aura:component>

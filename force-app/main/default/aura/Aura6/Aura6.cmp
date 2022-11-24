@@ -1,0 +1,22 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" >
+	
+    <aura:attribute type="contact" name="InsertCon" default="{'sObject':'Contact'}"/>
+    <aura:attribute type="string" name="SavePass"/>
+
+    
+    
+    <lightning:input type="String" value="{!v.InsertCon.LastName}" label="Name :"/>
+    <lightning:input type="Phone" value="{!v.InsertCon.Phone}" label="Phone :"/>
+    <lightning:input type="Email" value="{!v.InsertCon.Email}" label="Email :"/>
+    <lightning:input type="String" value="{!v.InsertCon.UserName__c}" label="UserName :"/>
+    <lightning:input type="Password" value="{!v.InsertCon.Password__c}" label="Password :"/>
+    <lightning:input type="Password" label="Confirm Password :" value="{!v.SavePass}"/>
+
+
+    <lightning:button label="Sign up" onclick="{!c.SaveContact}"/>
+
+
+
+
+    
+</aura:component>

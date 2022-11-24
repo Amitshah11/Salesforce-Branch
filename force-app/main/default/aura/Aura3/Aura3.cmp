@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="Aura3Class" >
+    
+    <aura:attribute name="OppDate" type="string"/>
+    
+    
+    <lightning:input type="date" label="Close Date"  format="yyyy-mm-dd" value="{!v.OppDate}" />
+    {!v.OppDate} <br/>
+    <lightning:button label="Update Opportunity" variant="brand" onclick="{!c.doSave}"/>
+    
+</aura:component>

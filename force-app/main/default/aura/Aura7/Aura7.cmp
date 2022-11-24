@@ -1,0 +1,23 @@
+<aura:component implements="flexipage:availableForRecordHome,force:hasRecordId" access="global" controller="Aura7Class" >
+    
+    <aura:attribute type="List" name="AccDetails"/>
+    <aura:handler name="init" value="{!this}" action="{!c.Details}"/>
+    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_col-bordered"> 
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Phone</th>
+            </tr>
+        </thead>     
+        <tbody>
+        <aura:iteration items="{!v.AccDetails}" var="row">
+               <tr>
+                    <td>{!row.Id}</td>
+                    <td>{!row.Name}</td>
+                    <td>{!row.Phone}</td>
+                </tr>
+        </aura:iteration>
+        </tbody> 
+    </table>
+</aura:component>

@@ -1,0 +1,29 @@
+<aura:component controller="PracticePlaceClass">
+    
+    <aura:attribute name="AcList" type="List"/>
+    <aura:attribute name="CoList" type="List"/>
+    
+    <aura:attribute name="AcId" type="String"/>
+    <aura:attribute name="CoId" type="String"/>
+    
+    
+    <aura:handler name="init" value="{!this}" action="{!c.Acclist}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.Conlist}"/>
+    
+    <lightning:Select name="select1" label="account" value="{!v.AcId}">
+        <aura:iteration items="{!v.AcList}" var="row">
+            <option value="{!row.id}">{!row.Name}</option>
+        </aura:iteration>
+    </lightning:Select>
+    
+    <lightning:Select name="select2" label="Contact" value="{!v.CoId}">
+        <aura:iteration items="{!v.CoList}" var="row2">
+            <option value="{!row2.Id}">{!row2.Name}</option>
+        </aura:iteration>
+    </lightning:Select>
+    
+    <h1>Selected Account Id :{!v.AcId}</h1>
+    <h1>Selected Contact Id :{!v.CoId}</h1>
+    
+    
+</aura:component>

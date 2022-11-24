@@ -1,0 +1,20 @@
+<template>
+    <lightning-card>
+    <select class="slds-select" title="Objects"  onchange={ShowFields}>
+        <option value={}>Choose Object...</option>
+
+        <template for:each={objList} for:item="obj">
+            <option key={obj.QualifiedApiName} value={obj.QualifiedApiName}>{obj.QualifiedApiName}</option>
+        </template>
+    </select>
+
+    <select class="slds-select" title="FieldNames" onchange={ShowFieldType}>
+
+        <template for:each={fieldList} for:item="obj">
+            <option key={obj} value={obj}>{obj}</option>
+        </template>
+    </select>
+
+   <h1>{fieldType}</h1> 
+</lightning-card>
+</template>

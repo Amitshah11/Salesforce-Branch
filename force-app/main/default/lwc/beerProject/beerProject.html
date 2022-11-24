@@ -1,0 +1,56 @@
+<template>
+    <lightning-card title="Beer Bar">
+        <div class="slds-grid slds-wrap slds-m-around_medium">
+
+            <div class=" slds-size_1-of-1">
+                <lightning-button label="Create" class="slds-float_right" variant="Brand" onclick={Create}>
+                </lightning-button>
+            </div>
+            <template if:false={createNew}>
+                <div class=" slds-size_1-of-1 slds-align_absolute-center">
+                    <lightning-input type="search" class="slds-align_absolute-center" placeholder="Search Beer"
+                        onchange={changeSearch}>
+                    </lightning-input>
+                </div>
+            </template>
+        </div>
+
+        <template if:false={createNew}>
+            <div class="slds-grid slds-wrap slds-m-around_small slds-align_absolute-center">
+
+                <template for:each={beerList} for:item="item">
+                    <div key={item.Id} class=" slds-size_1-of-4 slds-m-around_medium slds-card_boundary">
+                        
+                        <lightning-card  title={item.Name} icon-name="custom:custom56">
+                            <div class="slds-grid slds-wrap slds-m-around_small">
+                                <div class=" slds-size_1-of-2">
+                                    <img src={Beer}><img>
+                                </div>
+                                <div class="slds-size_1-of-2">
+                                    <b>Price : {item.Price__c}</b><br />
+                                    <b>Alcohol :{item.Alcohol__c}</b>
+                                    
+                                </div>
+                                <div class="slds-size_2-of-2">
+
+                                    <lightning-button-icon class="slds-float_right" icon-name="utility:delete"
+                                        title="Delete" onclick={DeleteBook} access-key={item.Id}>
+                                    </lightning-button-icon>
+
+                                </div>
+                            </div>
+                        </lightning-card>
+                    </div>
+                </template>
+            </div>
+        </template>
+        <template if:true={createNew}>
+            <div class="slds-m-around_medium ">
+                <lightning-card title="Create new Beer">
+                    <lightning-record-form object-api-name="Beer__c" fields={fields} columns="2" mode="edit"
+                        onsuccess={handleSubmit} oncancel={Cancel}></lightning-record-form>
+                </lightning-card>
+            </div>
+        </template>
+    </lightning-card>
+</template>

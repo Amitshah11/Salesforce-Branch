@@ -1,0 +1,12 @@
+<aura:component>
+<div class="slds-form-element">
+  <label for="select-01">Select Label</label>
+    
+      <select class="slds-select" id="select-01" >
+        <option value="">Select…</option>
+        <option>Option One</option>
+        <option>Option Two</option>
+        <option>Option Three</option>
+      </select>
+    </div>
+</aura:component>

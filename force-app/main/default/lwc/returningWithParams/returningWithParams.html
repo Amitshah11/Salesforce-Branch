@@ -1,0 +1,34 @@
+<template>
+<lightning-card icon-name="standard:account">
+    <div class="slds-m-around_x-small">
+    <lightning-input variant="label-hidden" label="Search Record" type="search" placeholder="Type to search account...."
+        onchange={changename}>
+    </lightning-input>
+
+    <h1>Account</h1>
+    <select class="slds-select" onchange={ConOpp} title="Account">
+        <option value={}>Choose Account....</option>
+
+        <template for:each={accList} for:item="accObj">
+            <option key={accObj.Id} value={accObj.Id}>{accObj.Name}</option>
+
+        </template>
+    </select>
+    <h1>Contact</h1>
+    <select class="slds-select" title="Contact">
+
+        <template for:each={conList} for:item="conObj">
+            <option key={conObj.Id} value={conObj.Id}>{conObj.Name}</option>
+        </template>
+    </select>
+    <h1>Opportunity</h1> 
+    <select class="slds-select" title="Opportunity">
+
+        <template for:each={oppList} for:item="oppObj">
+            <option key={oppObj.Id} value={oppObj.Name}>{oppObj.Name}</option>
+        </template>
+    </select>
+</div>
+</lightning-card>
+
+</template>
